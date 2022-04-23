@@ -1,0 +1,13 @@
+{
+  "name": "wasm-tower-defense",
+  "version": "1.0.0",
+  "repository": "git@github.com:NULL-header/wasm-tower-defense.git",
+  "author": "NULL-header <poaoq.poaoq@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.25",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0"
+  }
+}
