@@ -1,3 +1,4 @@
 /node_modules
 /public/*
 !/public/empty
+yarn-error.log
