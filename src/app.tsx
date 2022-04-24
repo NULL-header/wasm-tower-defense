@@ -2,6 +2,7 @@ import React from "react";
 import { chakra, extendTheme, ChakraProvider } from "@chakra-ui/react";
 import { useAsyncFn, useMount } from "react-use";
 import { greet } from "./worker/greet";
+import { run } from "./worker/game";
 
 const theme = extendTheme({
   style: {
@@ -23,7 +24,16 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <chakra.canvas width="100vw" height="100vh" id="game" />
+      <chakra.canvas
+        width="100vw"
+        height="100vh"
+        id="game"
+        ref={(canvas) => {
+          if (canvas == null) return;
+          const offscreen = (canvas as any).transferControlToOffscreen();
+          run(offscreen);
+        }}
+      />
     </ChakraProvider>
   );
 };

@@ -1,5 +1,6 @@
 {
   "rust-analyzer.linkedProjects": [
-    "lib/subthread/Cargo.toml"
+    "lib/subthread/Cargo.toml",
+    "lib/game/Cargo.toml"
   ]
 }

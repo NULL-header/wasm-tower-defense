@@ -1,4 +1,6 @@
-import { wasmHandle } from "./load-wasm";
+import { WasmHandle } from "../load-wasm";
+
+const wasmHandle = new WasmHandle(() => import("../../../lib/subthread/pkg"));
 
 const ctx = self;
 
