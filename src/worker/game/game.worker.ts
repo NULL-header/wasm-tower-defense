@@ -11,5 +11,5 @@ interface EventData {
 ctx.addEventListener("message", async (event: MessageEvent<EventData>) => {
   const mod = await wasmHandle.modAsync;
   const canvas = event.data.canvas;
-  console.log(canvas);
+  mod.greet(canvas);
 });

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { chakra, extendTheme, ChakraProvider } from "@chakra-ui/react";
-import { useAsyncFn, useMount } from "react-use";
+import { useAsyncFn, useMount, useUpdateEffect } from "react-use";
 import { greet } from "./worker/greet";
 import { run } from "./worker/game";
 
@@ -17,6 +17,14 @@ const theme = extendTheme({
 
 export const App = () => {
   // const [, importWasm] = useAsyncFn(() => import("../lib/subthread/pkg"), []);
+  const [canvas, setCanvas] = useState<HTMLCanvasElement | undefined>(
+    undefined
+  );
+  useUpdateEffect(() => {
+    if (canvas == null) return;
+    const offscreen = (canvas as any).transferControlToOffscreen();
+    run(offscreen);
+  }, [canvas]);
   useMount(async () => {
     await greet();
     console.log("finish");
@@ -30,8 +38,7 @@ export const App = () => {
         id="game"
         ref={(canvas) => {
           if (canvas == null) return;
-          const offscreen = (canvas as any).transferControlToOffscreen();
-          run(offscreen);
+          setCanvas(canvas);
         }}
       />
     </ChakraProvider>
